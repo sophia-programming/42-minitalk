@@ -1,0 +1,9 @@
+CC	= cc
+CFLAGS 	= -Wall -Wextra -Werror
+
+NAME	= minitalk
+
+SERVER 	= server
+CLIENT	= client
+
+
