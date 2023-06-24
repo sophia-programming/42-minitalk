@@ -13,7 +13,6 @@
 #ifndef MINITALK_BONUS_H
 # define MINITALK_BONUS_H
 
-# define BIT_MAX 256
 # define FAILURE -1
 
 # include <unistd.h>
@@ -26,14 +25,17 @@
 
 typedef struct s_signal
 {
-	pid_t	bit_index;
-	pid_t	sum;
+	int		bit_index;
+	uint8_t	sum;
 }	t_signal;
 
-size_t	ft_strlen(char *str);
-int		ft_putchar_fd(int c, char fd);
-void	ft_putstr_fd(char *str, int fd);
-void	ft_putnbr_fd(int nbr, int fd);
+size_t	ft_strlen(const char *s);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_isspace(int c);
 int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memset(void *b, int c, size_t len);
 
 #endif

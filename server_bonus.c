@@ -14,21 +14,6 @@
 
 t_signal	g_signal;
 
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*ptr;
-	size_t			i;
-
-	ptr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		*ptr = 0;
-		ptr++;
-		i++;
-	}
-}
-
 void	reset_signal(void)
 {
 	g_signal.sum = 0;
@@ -45,7 +30,7 @@ void	print_pid(void)
 void	signal_handler(int signal)
 {
 	if (signal == SIGUSR1)
-		g_signal.sum += (BIT_MAX >> g_signal.bit_index);
+		g_signal.sum += (0b100000000 >> g_signal.bit_index);
 	if (g_signal.bit_index == 1)
 	{
 		ft_putchar_fd(g_signal.sum, 1);
@@ -62,7 +47,7 @@ int	main(void)
 	ft_bzero(&sa, sizeof(sa));
 	sa.sa_handler = signal_handler;
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO;
+	sa.sa_flags = 0;
 	reset_signal();
 	print_pid();
 	sigaction(SIGUSR1, &sa, NULL);

@@ -19,17 +19,19 @@ NAME			= minitalk
 SERVER			= server
 CLIENT			= client
 
-SERVER_SRCS		= server.c utils.c
-CLIENT_SRCS		= client.c utils.c
+SERVER_SRCS		= server.c libft_utils.c libft_utils2.c
+CLIENT_SRCS		= client.c libft_utils.c libft_utils2.c
 				  
-SERVER_BONUS	= server_bonus.c utils_bonus.c
-CLIENT_BONUS	= client_bonus.c utils_bonus.c
+SERVER_BONUS	= server_bonus.c libft_utils_bonus.c libft_utils2_bonus.c
+CLIENT_BONUS	= client_bonus.c libft_utils_bonus.c libft_utils2_bonus.c
 	
 SERVER_OBJS		= $(SERVER_SRCS:.c=.o)
 CLIENT_OBJS		= $(CLIENT_SRCS:.c=.o)
 				  
 SERVER_BONUS_OBJS	= $(SERVER_BONUS:.c=.o)
 CLIENT_BONUS_OBJS	= $(CLIENT_BONUS:.c=.o)
+
+RM				= rm -rf
 	
 				  
 ifdef withbonus
@@ -58,11 +60,11 @@ $(CLIENT):		$(CLIENT_OBJS)
 				$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-				rm -f $(SERVER_OBJS) $(SERVER_BONUS_OBJS)
-				rm -f $(CLIENT_OBJS) $(CLIENT_BONUS_OBJS)
+				$(RM) $(SERVER_OBJS) $(SERVER_BONUS_OBJS)
+				$(RM) $(CLIENT_OBJS) $(CLIENT_BONUS_OBJS)
 
 fclean: 		clean
-				rm -f $(SERVER) $(CLIENT)
+				$(RM) $(SERVER) $(CLIENT)
 
 re:				fclean all
 
